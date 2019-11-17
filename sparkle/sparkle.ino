@@ -11,15 +11,29 @@ void setup() {
 }
 
 void loop() {
-  sparkle(strip.Color(255, 50, 50), 50);
-
+  sparkle(strip.Color(255, 50, 50), 25, 100);
+  multiColorSparkle(25, 100);
 }
 
-void sparkle(uint32_t color, int wait){
-  strip.setPixelColor(random(0, LED_CNT), color);
-  strip.show();
-  delay(wait);
-  strip.clear();
-  strip.show();
-  delay(wait);
+void sparkle(uint32_t color, int wait, int cycle) {
+  for (int i = 0; i < cycle; i++) {
+    strip.setPixelColor(random(0, LED_CNT), color);
+    strip.show();
+    delay(wait);
+    strip.clear();
+    strip.show();
+    delay(wait);
+  }
+}
+
+void multiColorSparkle(int wait, int cycle) {
+  for (int i = 0; i < cycle; i++) {
+    uint32_t color = strip.Color(random(0, 255), random(0, 255), random(0, 255));
+    strip.setPixelColor(random(0, LED_CNT), color);
+    strip.show();
+    delay(wait);
+    strip.clear();
+    strip.show();
+    delay(wait);
+  }
 }

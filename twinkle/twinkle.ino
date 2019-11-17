@@ -25,3 +25,15 @@ void twinkle(uint32_t color, int twinkleCnt, int twinkleWait, int cycleWait) {
   strip.show();
   delay(cycleWait);
 }
+
+void multiColorTwinkle(int twinkleCnt, int twinkleWait, int cycleWait) {
+  for (int i = 0; i < twinkleCnt; i++) {
+    uint32_t color = strip.Color(random(0, 255), random(0, 255), random(0, 255));
+    strip.setPixelColor(random(0, LED_CNT), color);
+    strip.show();
+    delay(twinkleWait);
+  }
+  strip.clear();
+  strip.show();
+  delay(cycleWait);
+}

@@ -11,7 +11,7 @@ void setup() {
 }
 
 void loop() {
-  twinkle(strip.Color(0, 127, 40), 20, 100, 100);
+  multiColoTwinkle(20, 100, 100);
 }
 
 void twinkle(uint32_t color, int twinkleCnt, int twinkleWait, int cycleWait) {
@@ -26,7 +26,7 @@ void twinkle(uint32_t color, int twinkleCnt, int twinkleWait, int cycleWait) {
   delay(cycleWait);
 }
 
-void multiColorTwinkle(int twinkleCnt, int twinkleWait, int cycleWait) {
+void multiColoTwinkle(int twinkleCnt, int twinkleWait, int cycleWait) {
   for (int i = 0; i < twinkleCnt; i++) {
     uint32_t color = strip.Color(random(0, 255), random(0, 255), random(0, 255));
     strip.setPixelColor(random(0, LED_CNT), color);
@@ -36,4 +36,9 @@ void multiColorTwinkle(int twinkleCnt, int twinkleWait, int cycleWait) {
   strip.clear();
   strip.show();
   delay(cycleWait);
+}
+
+void randomColorTwinkle(int twinkleCnt, int twinkleWait, int cycleWait) {
+  uint32_t color = strip.Color(random(0, 255), random(0, 255), random(0, 255));
+  twinkle(color, twinkleCnt, twinkleWait, cycleWait);
 }
